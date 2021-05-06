@@ -219,3 +219,226 @@ r
 y
 """
 ```
+
+##Functions
+
+```python
+def square(x):
+    return x*x
+```
+
+```python
+for i in range (10):
+    print(f"The square of {i} is {square(i)}")
+""" Output:
+The square of 0 is 0
+the square of 1 is 1
+The square of 2 is 4
+the square of 3 is 9
+The square of 4 is 16
+the square of 5 is 25
+The square of 6 is 36
+the square of 7 is 49
+The square of 8 is 64
+the square of 9 is 81
+```
+
+##Modules
+
+```python
+from functions import square
+
+for i in range(10):
+    print(f"The square of {i} is {square(i)}")
+```
+
+```python
+import functions
+
+for i in range(10):
+    print(f"The square of {i} is {functions.square(i)}")
+```
+
+##Object-Oriented Programming
+
+```python
+class Point():
+    # A method defininghow to create a point:
+    def _init_(self,x,y)
+        self.x = x
+        self.y = y
+        
+p = Point(2, 8)
+print(p.x)
+print(p.y)
+
+""" Output:
+2
+8
+"""
+```
+```python
+class Flight():
+    # Method to create new flight with given capacity
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.passengers = []
+
+    # Method to add a passenger to the flight:
+    def add_passenger(self, name):
+        self.passengers.append(name)
+```        
+    
+```python
+class Flight():
+    # Method to create new flight with given capacity
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.passengers = []
+
+    # Method to add a passenger to the flight:
+    def add_passenger(self, name):
+        if not self.open_seats():
+            return False
+        self.passengers.append(name)
+        return True
+
+    # Method to return number of open seats
+    def open_seats(self):
+        return self.capacity - len(self.passengers)
+```
+
+```python
+# Create a new flight with o=up to 3 passengers
+flight = Flight(3)
+
+# Create a list of people
+people = ["Harry", "Ron", "Hermione", "Ginny"]
+
+# Attempt to add each person in the list to a flight
+for person in people:
+    if flight.add_passenger(person):
+        print(f"Added {person} to flight successfully")
+    else:
+        print(f"No available seats for {person}")
+
+""" Output:
+Added Harry to flight successfully
+Added Ron to flight successfully
+Added Hermione to flight successfully
+No available seats for Ginny
+"""
+```
+
+##Functional Programing
+
+###Decorators
+
+```python
+def announce(f):
+    def wrapper():
+        print("About to run the function")
+        f()
+        print("Done with the function")
+    return wrapper
+
+@announce
+def hello():
+    print("Hello, world!")
+
+hello()
+
+""" Output:
+About to run the function
+Hello, world!
+Done with the function
+"""
+```
+
+###Lamba Functions
+
+```python
+square = lambda x: x * x
+```
+
+```python
+people = [
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Cho", "house": "Ravenclaw"},
+    {"name": "Draco", "house": "Slytherin"}
+]
+
+def f(person):
+    return person["name"]
+
+people.sort(key=f)
+
+print(people)
+
+""" Output:
+[{'name': 'Cho', 'house': 'Ravenclaw'}, {'name': 'Draco', 'house': 'Slytherin'}, {'name': 'Harry', 'house': 'Gryffindor'}]
+"""
+```
+
+```python
+people = [
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Cho", "house": "Ravenclaw"},
+    {"name": "Draco", "house": "Slytherin"}
+]
+
+people.sort(key=lambda person: person["name"])
+
+print(people)
+
+""" Output:
+[{'name': 'Cho', 'house': 'Ravenclaw'}, {'name': 'Draco', 'house': 'Slytherin'}, {'name': 'Harry', 'house': 'Gryffindor'}]
+"""
+```
+
+###Exceptions
+
+```python
+x = int(input("x: "))
+y = int(input("y: "))
+
+result = x / y
+
+print(f"{x} / {y} = {result}")
+```
+
+```python
+import sys
+
+x = int(input("x: "))
+y = int(input("y: "))
+
+try:
+    result = x / y
+except ZeroDivisionError:
+    print("Error: Cannot divide by 0.")
+    # Exit the program
+    sys.exit(1)
+
+print(f"{x} / {y} = {result}")
+```
+
+```python
+import sys
+
+try:
+    x = int(input("x: "))
+    y = int(input("y: "))
+except ValueError:
+    print("Error: Invalid input")
+    sys.exit(1)
+
+try:
+    result = x / y
+except ZeroDivisionError:
+    print("Error: Cannot divide by 0.")
+    # Exit the program
+    sys.exit(1)
+
+print(f"{x} / {y} = {result}")
+```
